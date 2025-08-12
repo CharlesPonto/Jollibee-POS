@@ -1,0 +1,10 @@
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\bin\Debug\Jollibee-POS.exe.config
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\bin\Debug\Jollibee-POS.exe
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\bin\Debug\Jollibee-POS.pdb
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.csproj.AssemblyReference.cache
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee_POS.Form1.resources
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee_POS.Properties.Resources.resources
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.csproj.GenerateResource.cache
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.csproj.CoreCompileInputs.cache
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.exe
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.pdb
