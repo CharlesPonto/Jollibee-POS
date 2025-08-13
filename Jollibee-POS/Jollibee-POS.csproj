@@ -83,5 +83,50 @@
   <ItemGroup>
     <None Include="Resources\Aloha Champ.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6pc. Chickenjoy Bucket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bacon Cheesy Yumburger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yumburger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aloha Champ1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Champ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chickenjoy Solo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chickenjoy with Fries.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1pc. Chickenjoy with Spaghetti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chickenjoy Solo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chickenjoy Family Box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6pc. Chickenjoy Bucket1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Coke.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pineapple Juice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Iced Tea.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

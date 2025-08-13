@@ -16,5 +16,23 @@ namespace Jollibee_POS
         {
             InitializeComponent();
         }
+
+
+        // for numpad
+        private void numpadClick(object sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (clickedButton != null)
+            {
+                txtAmountPaid.Text += clickedButton.Text;
+            }
+        }
+
+        private void numpadClearClick(object sender, EventArgs e)
+        {
+            txtAmountPaid.Text = "₱";
+        }
+
+     
     }
 }
