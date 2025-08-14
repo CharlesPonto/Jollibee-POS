@@ -21,7 +21,6 @@ namespace Jollibee_POS
         //menu variable
         private string productName;
         private decimal productPrice;
-
         public Form1()
         {
             InitializeComponent();
@@ -42,35 +41,56 @@ namespace Jollibee_POS
                 }
             }
         }
-
         private void numpadClearClick(object sender, EventArgs e)
         {
             txtAmountPaid.Text = "₱";
         }
 
-
         //order click
         private void order_Click(object sender, EventArgs e)
         {
+            //use the parent if clicked (label or image)
+            Panel clickedPanel = sender as Panel ?? (sender as Control).Parent as Panel;
+
+            string productName = "";
+            decimal productPrice = 0;
+
             //get name and price
-            foreach (Control control in myPanel.Controls)
+            foreach (Control control in clickedPanel.Controls)
             {
                 if (control is Label label)
                 {
-                    if(label.Name == "pName")
+                    if ((string)label.Tag == "Name")
                     {
                         productName = label.Text;
                     }
-                    
-                    if(label.Name == "pPrice")
+
+                    if ((string)label.Tag == "Price")
                     {
-                        string priceText = label.Text.Replace("₱", "");
+                        string priceText = label.Text.Replace("₱", "").Trim();
                         productPrice = Convert.ToDecimal(priceText);
                     }
-               }
+                }
             }
-
             MessageBox.Show($"Name: {productName}\nPrice: {productPrice}");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //iterates to my table (menu)
+            foreach (Control control in menuTableLayout.Controls)
+            {
+                if (control is Panel menuPanel)
+                {
+                    menuPanel.Click += order_Click;
+
+                    //(labels + image) -> order_Click event
+                    foreach (Control child in menuPanel.Controls)
+                    {
+                        child.Click += order_Click;
+                    }
+                }
+            }
         }
     }
 }

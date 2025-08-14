@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.menuTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -75,7 +75,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.myPanel = new System.Windows.Forms.Panel();
+            this.menuPanel = new System.Windows.Forms.Panel();
             this.pPrice = new System.Windows.Forms.Label();
             this.pName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -117,7 +117,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.menuTableLayout.SuspendLayout();
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             this.panel12.SuspendLayout();
@@ -140,7 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.myPanel.SuspendLayout();
+            this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cartOrders)).BeginInit();
@@ -154,7 +154,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PeachPuff;
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Controls.Add(this.menuTableLayout);
             this.panel1.Controls.Add(this.label27);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(441, 28);
@@ -163,34 +163,34 @@
             this.panel1.Size = new System.Drawing.Size(1006, 784);
             this.panel1.TabIndex = 0;
             // 
-            // tableLayoutPanel1
+            // menuTableLayout
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.panel13, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel12, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel11, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel10, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel9, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel8, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel7, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel6, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel5, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel4, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.myPanel, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 52);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(986, 716);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.menuTableLayout.ColumnCount = 4;
+            this.menuTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.menuTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.menuTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.menuTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.menuTableLayout.Controls.Add(this.panel13, 3, 2);
+            this.menuTableLayout.Controls.Add(this.panel12, 2, 2);
+            this.menuTableLayout.Controls.Add(this.panel11, 1, 2);
+            this.menuTableLayout.Controls.Add(this.panel10, 0, 2);
+            this.menuTableLayout.Controls.Add(this.panel9, 3, 1);
+            this.menuTableLayout.Controls.Add(this.panel8, 2, 1);
+            this.menuTableLayout.Controls.Add(this.panel7, 1, 1);
+            this.menuTableLayout.Controls.Add(this.panel6, 0, 1);
+            this.menuTableLayout.Controls.Add(this.panel5, 3, 0);
+            this.menuTableLayout.Controls.Add(this.panel4, 2, 0);
+            this.menuTableLayout.Controls.Add(this.panel3, 1, 0);
+            this.menuTableLayout.Controls.Add(this.menuPanel, 0, 0);
+            this.menuTableLayout.Location = new System.Drawing.Point(9, 52);
+            this.menuTableLayout.Margin = new System.Windows.Forms.Padding(4);
+            this.menuTableLayout.Name = "menuTableLayout";
+            this.menuTableLayout.RowCount = 3;
+            this.menuTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.menuTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.menuTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.menuTableLayout.Size = new System.Drawing.Size(986, 716);
+            this.menuTableLayout.TabIndex = 1;
             // 
             // panel13
             // 
@@ -214,6 +214,7 @@
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(72, 22);
             this.label24.TabIndex = 2;
+            this.label24.Tag = "Price";
             this.label24.Text = "₱ 49.00";
             // 
             // label25
@@ -226,6 +227,7 @@
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(108, 29);
             this.label25.TabIndex = 1;
+            this.label25.Tag = "Name";
             this.label25.Text = "Iced Tea";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -263,6 +265,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(72, 22);
             this.label22.TabIndex = 2;
+            this.label22.Tag = "Price";
             this.label22.Text = "₱ 59.00";
             // 
             // label23
@@ -275,6 +278,7 @@
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(123, 29);
             this.label23.TabIndex = 1;
+            this.label23.Tag = "Name";
             this.label23.Text = "Pineapple";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -312,6 +316,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(72, 22);
             this.label20.TabIndex = 2;
+            this.label20.Tag = "Price";
             this.label20.Text = "₱ 49.00";
             // 
             // label21
@@ -324,6 +329,7 @@
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(77, 29);
             this.label21.TabIndex = 1;
+            this.label21.Tag = "Name";
             this.label21.Text = "Sprite";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -350,6 +356,7 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(238, 230);
             this.panel10.TabIndex = 3;
+            this.panel10.Click += new System.EventHandler(this.order_Click);
             // 
             // label18
             // 
@@ -361,6 +368,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(72, 22);
             this.label18.TabIndex = 2;
+            this.label18.Tag = "Price";
             this.label18.Text = "₱ 49.00";
             // 
             // label19
@@ -373,6 +381,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(70, 29);
             this.label19.TabIndex = 1;
+            this.label19.Tag = "Name";
             this.label19.Text = "Coke";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -411,6 +420,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(82, 22);
             this.label16.TabIndex = 2;
+            this.label16.Tag = "Price";
             this.label16.Text = "₱ 139.00";
             // 
             // label17
@@ -423,6 +433,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(157, 29);
             this.label17.TabIndex = 1;
+            this.label17.Tag = "Name";
             this.label17.Text = "Aloha Champ";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -460,6 +471,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(82, 22);
             this.label14.TabIndex = 2;
+            this.label14.Tag = "Price";
             this.label14.Text = "₱ 129.00";
             // 
             // label15
@@ -472,6 +484,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(90, 29);
             this.label15.TabIndex = 1;
+            this.label15.Tag = "Name";
             this.label15.Text = "Champ";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -509,6 +522,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 22);
             this.label12.TabIndex = 2;
+            this.label12.Tag = "Price";
             this.label12.Text = "₱ 99.00";
             // 
             // label13
@@ -521,6 +535,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(168, 29);
             this.label13.TabIndex = 1;
+            this.label13.Tag = "Name";
             this.label13.Text = "Bacon Cheesy";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -558,6 +573,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(72, 22);
             this.label10.TabIndex = 2;
+            this.label10.Tag = "Price";
             this.label10.Text = "₱ 85.00";
             // 
             // label11
@@ -570,6 +586,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(133, 29);
             this.label11.TabIndex = 1;
+            this.label11.Tag = "Name";
             this.label11.Text = "Yumburger";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -607,6 +624,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 22);
             this.label8.TabIndex = 2;
+            this.label8.Tag = "Price";
             this.label8.Text = "₱ 499.00";
             // 
             // label9
@@ -619,6 +637,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(210, 29);
             this.label9.TabIndex = 1;
+            this.label9.Tag = "Name";
             this.label9.Text = "Chickenjoy Bucket";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -656,6 +675,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 22);
             this.label6.TabIndex = 2;
+            this.label6.Tag = "Price";
             this.label6.Text = "₱ 399.00";
             // 
             // label7
@@ -668,6 +688,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(178, 29);
             this.label7.TabIndex = 1;
+            this.label7.Tag = "Name";
             this.label7.Text = "Chickenjoy Box";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -705,6 +726,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 22);
             this.label4.TabIndex = 2;
+            this.label4.Tag = "Price";
             this.label4.Text = "₱ 189.00";
             // 
             // label5
@@ -717,6 +739,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(212, 29);
             this.label5.TabIndex = 1;
+            this.label5.Tag = "Name";
             this.label5.Text = "Chicken with Spag";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -731,19 +754,18 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // myPanel
+            // menuPanel
             // 
-            this.myPanel.BackColor = System.Drawing.Color.PapayaWhip;
-            this.myPanel.Controls.Add(this.pPrice);
-            this.myPanel.Controls.Add(this.pName);
-            this.myPanel.Controls.Add(this.pictureBox1);
-            this.myPanel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.myPanel.Location = new System.Drawing.Point(4, 4);
-            this.myPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.myPanel.Name = "myPanel";
-            this.myPanel.Size = new System.Drawing.Size(238, 230);
-            this.myPanel.TabIndex = 0;
-            this.myPanel.Click += new System.EventHandler(this.order_Click);
+            this.menuPanel.BackColor = System.Drawing.Color.PapayaWhip;
+            this.menuPanel.Controls.Add(this.pPrice);
+            this.menuPanel.Controls.Add(this.pName);
+            this.menuPanel.Controls.Add(this.pictureBox1);
+            this.menuPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.menuPanel.Location = new System.Drawing.Point(4, 4);
+            this.menuPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.menuPanel.Name = "menuPanel";
+            this.menuPanel.Size = new System.Drawing.Size(238, 230);
+            this.menuPanel.TabIndex = 0;
             // 
             // pPrice
             // 
@@ -755,6 +777,7 @@
             this.pPrice.Name = "pPrice";
             this.pPrice.Size = new System.Drawing.Size(72, 22);
             this.pPrice.TabIndex = 2;
+            this.pPrice.Tag = "Price";
             this.pPrice.Text = "₱ 99.00";
             // 
             // pName
@@ -767,6 +790,7 @@
             this.pName.Name = "pName";
             this.pName.Size = new System.Drawing.Size(187, 29);
             this.pName.TabIndex = 1;
+            this.pName.Tag = "Name";
             this.pName.Text = "Chickenjoy Solo";
             this.pName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1227,9 +1251,10 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jollibai";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.menuTableLayout.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
@@ -1263,8 +1288,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.myPanel.ResumeLayout(false);
-            this.myPanel.PerformLayout();
+            this.menuPanel.ResumeLayout(false);
+            this.menuPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
@@ -1284,8 +1309,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel myPanel;
+        private System.Windows.Forms.TableLayoutPanel menuTableLayout;
+        private System.Windows.Forms.Panel menuPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label pPrice;
