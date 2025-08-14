@@ -12,11 +12,18 @@ namespace Jollibee_POS
 {
     public partial class Form1 : Form
     {
+
+        //variables
+
+        //transaction variables
+        private decimal totalAmount;
+        private decimal change; 
+        private decimal totalOrder;
+
         public Form1()
         {
             InitializeComponent();
         }
-
 
         // for numpad
         private void numpadClick(object sender, EventArgs e)
@@ -25,6 +32,12 @@ namespace Jollibee_POS
             if (clickedButton != null)
             {
                 txtAmountPaid.Text += clickedButton.Text;
+
+                string amountText = txtAmountPaid.Text.Replace("₱", "");
+                if (decimal.TryParse(amountText, out decimal amount))
+                {
+                    totalAmount = amount;
+                }
             }
         }
 
@@ -32,7 +45,5 @@ namespace Jollibee_POS
         {
             txtAmountPaid.Text = "₱";
         }
-
-     
     }
 }
