@@ -13,19 +13,21 @@ namespace Jollibee_POS
     public partial class Form1 : Form
     {
 
-        //variables
-
         //transaction variables
         private decimal totalAmount;
         private decimal change; 
-        private decimal totalOrder;
+        private decimal subTotal;
+
+        //menu variable
+        private string productName;
+        private decimal productPrice;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        // for numpad
+        //numpad
         private void numpadClick(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
@@ -44,6 +46,31 @@ namespace Jollibee_POS
         private void numpadClearClick(object sender, EventArgs e)
         {
             txtAmountPaid.Text = "₱";
+        }
+
+
+        //order click
+        private void order_Click(object sender, EventArgs e)
+        {
+            //get name and price
+            foreach (Control control in myPanel.Controls)
+            {
+                if (control is Label label)
+                {
+                    if(label.Name == "pName")
+                    {
+                        productName = label.Text;
+                    }
+                    
+                    if(label.Name == "pPrice")
+                    {
+                        string priceText = label.Text.Replace("₱", "");
+                        productPrice = Convert.ToDecimal(priceText);
+                    }
+               }
+            }
+
+            MessageBox.Show($"Name: {productName}\nPrice: {productPrice}");
         }
     }
 }

@@ -75,9 +75,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.myPanel = new System.Windows.Forms.Panel();
+            this.pPrice = new System.Windows.Forms.Label();
+            this.pName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -140,7 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.myPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cartOrders)).BeginInit();
@@ -181,7 +181,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel5, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.myPanel, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 52);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -731,43 +731,44 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // panel2
+            // myPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.PapayaWhip;
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel2.Location = new System.Drawing.Point(4, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(238, 230);
-            this.panel2.TabIndex = 0;
+            this.myPanel.BackColor = System.Drawing.Color.PapayaWhip;
+            this.myPanel.Controls.Add(this.pPrice);
+            this.myPanel.Controls.Add(this.pName);
+            this.myPanel.Controls.Add(this.pictureBox1);
+            this.myPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.myPanel.Location = new System.Drawing.Point(4, 4);
+            this.myPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.myPanel.Name = "myPanel";
+            this.myPanel.Size = new System.Drawing.Size(238, 230);
+            this.myPanel.TabIndex = 0;
+            this.myPanel.Click += new System.EventHandler(this.order_Click);
             // 
-            // label3
+            // pPrice
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label3.Location = new System.Drawing.Point(73, 187);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 22);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "₱ 99.00";
+            this.pPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pPrice.AutoSize = true;
+            this.pPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.pPrice.Location = new System.Drawing.Point(73, 187);
+            this.pPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.pPrice.Name = "pPrice";
+            this.pPrice.Size = new System.Drawing.Size(72, 22);
+            this.pPrice.TabIndex = 2;
+            this.pPrice.Text = "₱ 99.00";
             // 
-            // label2
+            // pName
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.label2.Location = new System.Drawing.Point(26, 157);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(187, 29);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Chickenjoy Solo";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pName.AutoSize = true;
+            this.pName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.pName.Location = new System.Drawing.Point(26, 157);
+            this.pName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.pName.Name = "pName";
+            this.pName.Size = new System.Drawing.Size(187, 29);
+            this.pName.TabIndex = 1;
+            this.pName.Text = "Chickenjoy Solo";
+            this.pName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -1262,8 +1263,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.myPanel.ResumeLayout(false);
+            this.myPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
@@ -1284,11 +1285,11 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel myPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label pPrice;
+        private System.Windows.Forms.Label pName;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
