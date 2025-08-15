@@ -12,11 +12,12 @@ namespace Jollibee_POS
 {
     public partial class Form1 : Form
     {
+        private List<MenuItem> cart = new List<MenuItem>();
 
         //transaction variables
-        private decimal totalAmount;
-        private decimal change; 
-        private decimal subTotal;
+        private decimal amountPaid = 0.00m;
+        private decimal change = 0.00m; 
+        private decimal subTotal = 0.00m;
 
         //menu variable
         private string productName;
@@ -32,18 +33,18 @@ namespace Jollibee_POS
             Button clickedButton = sender as Button;
             if (clickedButton != null)
             {
-                txtAmountPaid.Text += clickedButton.Text;
+                transactionAmountPaid.Text += clickedButton.Text;
 
-                string amountText = txtAmountPaid.Text.Replace("₱", "");
+                string amountText = transactionAmountPaid.Text.Replace("₱", "");
                 if (decimal.TryParse(amountText, out decimal amount))
                 {
-                    totalAmount = amount;
+                    amountPaid = amount;
                 }
             }
         }
         private void numpadClearClick(object sender, EventArgs e)
         {
-            txtAmountPaid.Text = "₱";
+            transactionAmountPaid.Text = "₱";
         }
 
         //order click
@@ -51,9 +52,6 @@ namespace Jollibee_POS
         {
             //use the parent if clicked (label or image)
             Panel clickedPanel = sender as Panel ?? (sender as Control).Parent as Panel;
-
-            string productName = "";
-            decimal productPrice = 0;
 
             //get name and price
             foreach (Control control in clickedPanel.Controls)
@@ -72,7 +70,32 @@ namespace Jollibee_POS
                     }
                 }
             }
-            MessageBox.Show($"Name: {productName}\nPrice: {productPrice}");
+            //MessageBox.Show($"Name: {productName}\nPrice: {productPrice}");
+
+            var existingItem = cart.FirstOrDefault(item => item.Name == productName);
+            if (existingItem != null)
+            {
+                existingItem.Quantity += 1;
+            }
+            else
+            {
+                cart.Add(new MenuItem { Name = productName, Price = productPrice, Quantity = 1 });
+            }
+
+            RefreshCartGrid();
+            calculateCartOrders();
+        }
+
+        private void RefreshCartGrid()
+        {
+            cartGrid.Rows.Clear();
+
+            foreach (var item in cart)
+            {
+                cartGrid.Rows.Add(item.Name, item.Quantity, "₱" + item.Price.ToString("N2"));
+            }
+
+            cartGrid.ClearSelection();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -91,6 +114,84 @@ namespace Jollibee_POS
                     }
                 }
             }
+        }
+
+        private void btnClearAll_Click(object sender, EventArgs e)
+        {
+            cartGrid.Rows.Clear();
+            cart.Clear();
+            calculateCartOrders();
+            resetUpdateQtyState();
+        }
+
+        private void cardGrid_editRowQty(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow clickedRow = cartGrid.Rows[e.RowIndex];
+
+                updateQtyInput.Enabled = true;
+                updateQtyBtn.Enabled = true;
+
+                updateQtyInput.Value = Convert.ToInt32(clickedRow.Cells["OrderQty"].Value);
+                //updateRowQty(clickedRow);
+                //int quantity = Convert.ToInt32(clickedRow.Cells["OrderQty"].Value);
+                //MessageBox.Show($"{quantity.ToString()}");
+            }
+        }
+
+        public void UpdateRowQty(DataGridViewRow clickedRow)
+        {
+            int rowIndex = clickedRow.Index;
+            int newQty = Convert.ToInt32(updateQtyInput.Value);
+
+            //get values from rows
+            // int quantity = Convert.ToInt32(clickedRow.Cells["OrderQty"].Value);
+            //clickedRow.Cells["OrderQty"].Value = updateQtyInput.Value;
+
+            cart[rowIndex].Quantity = newQty;
+            clickedRow.Cells["OrderQty"].Value = newQty;
+
+            calculateCartOrders();
+            resetUpdateQtyState();
+        }
+
+        public void resetUpdateQtyState()
+        {
+            cartGrid.ClearSelection();
+            updateQtyInput.Enabled = false;
+            updateQtyBtn.Enabled = false;
+            updateQtyInput.Value = 0;
+        }
+        private void updateQtyBtn_Click(object sender, EventArgs e)
+        {
+            if(cartGrid.CurrentRow != null)
+            {
+                UpdateRowQty(cartGrid.CurrentRow);
+            }
+        }
+
+        public void calculateCartOrders()
+        {
+            subTotal = 0.00m; 
+
+            foreach (var item in cart)
+            {
+                subTotal += item.Total; 
+            }
+
+            cartTotal.Text = $"₱{subTotal.ToString()}";
+            cartGrid.ClearSelection();
+
+            calculateTransaction();
+        }
+
+        public void calculateTransaction()
+        {
+            transactionTotal.Text = subTotal.ToString();
+            transactionAmountPaid.Text = amountPaid.ToString();
+            decimal change = subTotal - amountPaid;
+            transactionChange.Text = change.ToString();
         }
     }
 }

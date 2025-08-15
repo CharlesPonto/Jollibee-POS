@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuTableLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -82,21 +85,26 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.cartOrders = new System.Windows.Forms.DataGridView();
+            this.updateQtyPanel = new System.Windows.Forms.Panel();
+            this.updateQtyInput = new System.Windows.Forms.NumericUpDown();
+            this.updateQtyBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cartGrid = new System.Windows.Forms.DataGridView();
             this.OrderItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPay = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
-            this.cartTotal = new System.Windows.Forms.Panel();
+            this.cartTotalPanel = new System.Windows.Forms.Panel();
+            this.cartTotal = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.txtAmountPaid = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.transactionChange = new System.Windows.Forms.TextBox();
+            this.transactionAmountPaid = new System.Windows.Forms.TextBox();
+            this.transactionTotal = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
@@ -143,8 +151,10 @@
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cartOrders)).BeginInit();
-            this.cartTotal.SuspendLayout();
+            this.updateQtyPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.updateQtyInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cartGrid)).BeginInit();
+            this.cartTotalPanel.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panel17.SuspendLayout();
@@ -829,52 +839,135 @@
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.panel14.Controls.Add(this.cartOrders);
+            this.panel14.Controls.Add(this.updateQtyPanel);
+            this.panel14.Controls.Add(this.cartGrid);
             this.panel14.Controls.Add(this.btnPay);
             this.panel14.Controls.Add(this.btnClearAll);
-            this.panel14.Controls.Add(this.cartTotal);
+            this.panel14.Controls.Add(this.cartTotalPanel);
             this.panel14.Controls.Add(this.label26);
             this.panel14.Location = new System.Drawing.Point(1454, 28);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(422, 784);
             this.panel14.TabIndex = 3;
             // 
-            // cartOrders
+            // updateQtyPanel
             // 
-            this.cartOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.cartOrders.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.cartOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cartOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.updateQtyPanel.BackColor = System.Drawing.Color.PapayaWhip;
+            this.updateQtyPanel.Controls.Add(this.updateQtyInput);
+            this.updateQtyPanel.Controls.Add(this.updateQtyBtn);
+            this.updateQtyPanel.Controls.Add(this.label3);
+            this.updateQtyPanel.Location = new System.Drawing.Point(11, 568);
+            this.updateQtyPanel.Name = "updateQtyPanel";
+            this.updateQtyPanel.Size = new System.Drawing.Size(395, 60);
+            this.updateQtyPanel.TabIndex = 7;
+            // 
+            // updateQtyInput
+            // 
+            this.updateQtyInput.Enabled = false;
+            this.updateQtyInput.Font = new System.Drawing.Font("Segoe UI Semibold", 12.8F, System.Drawing.FontStyle.Bold);
+            this.updateQtyInput.Location = new System.Drawing.Point(130, 13);
+            this.updateQtyInput.Name = "updateQtyInput";
+            this.updateQtyInput.Size = new System.Drawing.Size(120, 36);
+            this.updateQtyInput.TabIndex = 10;
+            this.updateQtyInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // updateQtyBtn
+            // 
+            this.updateQtyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.updateQtyBtn.BackColor = System.Drawing.Color.LightSalmon;
+            this.updateQtyBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.updateQtyBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updateQtyBtn.Enabled = false;
+            this.updateQtyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.updateQtyBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateQtyBtn.ForeColor = System.Drawing.Color.White;
+            this.updateQtyBtn.Location = new System.Drawing.Point(270, 9);
+            this.updateQtyBtn.Name = "updateQtyBtn";
+            this.updateQtyBtn.Size = new System.Drawing.Size(110, 42);
+            this.updateQtyBtn.TabIndex = 9;
+            this.updateQtyBtn.Text = "Update";
+            this.updateQtyBtn.UseVisualStyleBackColor = false;
+            this.updateQtyBtn.Click += new System.EventHandler(this.updateQtyBtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.8F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(3, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(121, 35);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Quantity:";
+            // 
+            // cartGrid
+            // 
+            this.cartGrid.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cartGrid.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cartGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.cartGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cartGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.OrderItem,
             this.OrderQty,
             this.OrderPrice});
-            this.cartOrders.GridColor = System.Drawing.SystemColors.Control;
-            this.cartOrders.Location = new System.Drawing.Point(11, 56);
-            this.cartOrders.Name = "cartOrders";
-            this.cartOrders.RowHeadersVisible = false;
-            this.cartOrders.RowHeadersWidth = 51;
-            this.cartOrders.RowTemplate.Height = 24;
-            this.cartOrders.Size = new System.Drawing.Size(395, 562);
-            this.cartOrders.TabIndex = 8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cartGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.cartGrid.GridColor = System.Drawing.SystemColors.Control;
+            this.cartGrid.Location = new System.Drawing.Point(11, 56);
+            this.cartGrid.Name = "cartGrid";
+            this.cartGrid.RowHeadersVisible = false;
+            this.cartGrid.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cartGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.cartGrid.RowTemplate.Height = 24;
+            this.cartGrid.Size = new System.Drawing.Size(395, 506);
+            this.cartGrid.TabIndex = 8;
+            this.cartGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cardGrid_editRowQty);
             // 
             // OrderItem
             // 
+            this.OrderItem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrderItem.FillWeight = 64.13065F;
             this.OrderItem.HeaderText = "ITEM";
             this.OrderItem.MinimumWidth = 6;
             this.OrderItem.Name = "OrderItem";
+            this.OrderItem.ReadOnly = true;
+            this.OrderItem.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // OrderQty
             // 
+            this.OrderQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.OrderQty.FillWeight = 75.44154F;
             this.OrderQty.HeaderText = "QTY";
             this.OrderQty.MinimumWidth = 6;
             this.OrderQty.Name = "OrderQty";
+            this.OrderQty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.OrderQty.Width = 80;
             // 
             // OrderPrice
             // 
+            this.OrderPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.OrderPrice.FillWeight = 160.4278F;
             this.OrderPrice.HeaderText = "PRICE";
             this.OrderPrice.MinimumWidth = 6;
             this.OrderPrice.Name = "OrderPrice";
             this.OrderPrice.ReadOnly = true;
+            this.OrderPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.OrderPrice.Width = 80;
             // 
             // btnPay
             // 
@@ -907,16 +1000,30 @@
             this.btnClearAll.TabIndex = 6;
             this.btnClearAll.Text = "Clear All";
             this.btnClearAll.UseVisualStyleBackColor = false;
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
+            // 
+            // cartTotalPanel
+            // 
+            this.cartTotalPanel.BackColor = System.Drawing.Color.PapayaWhip;
+            this.cartTotalPanel.Controls.Add(this.cartTotal);
+            this.cartTotalPanel.Controls.Add(this.label30);
+            this.cartTotalPanel.Controls.Add(this.label28);
+            this.cartTotalPanel.Location = new System.Drawing.Point(11, 634);
+            this.cartTotalPanel.Name = "cartTotalPanel";
+            this.cartTotalPanel.Size = new System.Drawing.Size(395, 60);
+            this.cartTotalPanel.TabIndex = 4;
             // 
             // cartTotal
             // 
             this.cartTotal.BackColor = System.Drawing.Color.PapayaWhip;
-            this.cartTotal.Controls.Add(this.label30);
-            this.cartTotal.Controls.Add(this.label28);
-            this.cartTotal.Location = new System.Drawing.Point(11, 634);
+            this.cartTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cartTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cartTotal.Location = new System.Drawing.Point(203, 11);
             this.cartTotal.Name = "cartTotal";
-            this.cartTotal.Size = new System.Drawing.Size(395, 60);
-            this.cartTotal.TabIndex = 4;
+            this.cartTotal.Size = new System.Drawing.Size(177, 34);
+            this.cartTotal.TabIndex = 12;
+            this.cartTotal.Text = "₱0.00";
+            this.cartTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label30
             // 
@@ -924,11 +1031,11 @@
             this.label30.AutoSize = true;
             this.label30.BackColor = System.Drawing.Color.Transparent;
             this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 15.8F, System.Drawing.FontStyle.Bold);
-            this.label30.Location = new System.Drawing.Point(279, 11);
+            this.label30.Location = new System.Drawing.Point(198, 11);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(101, 37);
+            this.label30.Size = new System.Drawing.Size(0, 37);
             this.label30.TabIndex = 6;
-            this.label30.Text = "₱85.00";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label28
             // 
@@ -967,9 +1074,9 @@
             // panel18
             // 
             this.panel18.BackColor = System.Drawing.Color.PapayaWhip;
-            this.panel18.Controls.Add(this.textBox3);
-            this.panel18.Controls.Add(this.txtAmountPaid);
-            this.panel18.Controls.Add(this.textBox2);
+            this.panel18.Controls.Add(this.transactionChange);
+            this.panel18.Controls.Add(this.transactionAmountPaid);
+            this.panel18.Controls.Add(this.transactionTotal);
             this.panel18.Controls.Add(this.label34);
             this.panel18.Controls.Add(this.label33);
             this.panel18.Controls.Add(this.label32);
@@ -979,32 +1086,32 @@
             this.panel18.Size = new System.Drawing.Size(395, 190);
             this.panel18.TabIndex = 5;
             // 
-            // textBox3
+            // transactionChange
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(209, 134);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(177, 41);
-            this.textBox3.TabIndex = 13;
-            this.textBox3.Text = "₱350.00";
+            this.transactionChange.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionChange.Location = new System.Drawing.Point(209, 134);
+            this.transactionChange.Name = "transactionChange";
+            this.transactionChange.Size = new System.Drawing.Size(177, 41);
+            this.transactionChange.TabIndex = 13;
+            this.transactionChange.Text = "₱0.00";
             // 
-            // txtAmountPaid
+            // transactionAmountPaid
             // 
-            this.txtAmountPaid.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmountPaid.Location = new System.Drawing.Point(209, 75);
-            this.txtAmountPaid.Name = "txtAmountPaid";
-            this.txtAmountPaid.Size = new System.Drawing.Size(177, 41);
-            this.txtAmountPaid.TabIndex = 12;
-            this.txtAmountPaid.Text = "₱";
+            this.transactionAmountPaid.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionAmountPaid.Location = new System.Drawing.Point(209, 75);
+            this.transactionAmountPaid.Name = "transactionAmountPaid";
+            this.transactionAmountPaid.Size = new System.Drawing.Size(177, 41);
+            this.transactionAmountPaid.TabIndex = 12;
+            this.transactionAmountPaid.Text = "₱0.00";
             // 
-            // textBox2
+            // transactionTotal
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(209, 19);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(177, 41);
-            this.textBox2.TabIndex = 11;
-            this.textBox2.Text = "₱650.00";
+            this.transactionTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionTotal.Location = new System.Drawing.Point(209, 19);
+            this.transactionTotal.Name = "transactionTotal";
+            this.transactionTotal.Size = new System.Drawing.Size(177, 41);
+            this.transactionTotal.TabIndex = 11;
+            this.transactionTotal.Text = "₱0.00";
             // 
             // label34
             // 
@@ -1293,9 +1400,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cartOrders)).EndInit();
-            this.cartTotal.ResumeLayout(false);
-            this.cartTotal.PerformLayout();
+            this.updateQtyPanel.ResumeLayout(false);
+            this.updateQtyPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.updateQtyInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cartGrid)).EndInit();
+            this.cartTotalPanel.ResumeLayout(false);
+            this.cartTotalPanel.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             this.panel18.ResumeLayout(false);
@@ -1362,12 +1472,12 @@
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Panel cartTotal;
+        private System.Windows.Forms.Panel cartTotalPanel;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btnPay;
         private System.Windows.Forms.Button btnClearAll;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.DataGridView cartOrders;
+        private System.Windows.Forms.DataGridView cartGrid;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Panel panel17;
@@ -1388,13 +1498,18 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox txtAmountPaid;
+        private System.Windows.Forms.TextBox transactionTotal;
+        private System.Windows.Forms.TextBox transactionChange;
+        private System.Windows.Forms.TextBox transactionAmountPaid;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderPrice;
+        private System.Windows.Forms.Panel updateQtyPanel;
+        private System.Windows.Forms.NumericUpDown updateQtyInput;
+        private System.Windows.Forms.Button updateQtyBtn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox cartTotal;
     }
 }
 
