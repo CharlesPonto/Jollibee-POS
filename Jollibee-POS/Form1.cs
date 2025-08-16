@@ -15,7 +15,7 @@ namespace Jollibee_POS
         private List<MenuItem> cart = new List<MenuItem>();
 
         //transaction variables
-        private decimal amountPaid = 0.00m;
+        private decimal amountPaid;
         private decimal change = 0.00m; 
         private decimal subTotal = 0.00m;
 
@@ -30,6 +30,12 @@ namespace Jollibee_POS
         //numpad
         private void numpadClick(object sender, EventArgs e)
         {
+
+            if (transactionAmountPaid.Text.Contains("₱0.00"))
+            {
+                transactionAmountPaid.Text = "₱";
+            }
+
             Button clickedButton = sender as Button;
             if (clickedButton != null)
             {
@@ -41,10 +47,15 @@ namespace Jollibee_POS
                     amountPaid = amount;
                 }
             }
+
+            calculateTransaction();
         }
         private void numpadClearClick(object sender, EventArgs e)
         {
-            transactionAmountPaid.Text = "₱";
+            amountPaid = 0;  
+            transactionAmountPaid.Text = "₱0.00";
+
+            calculateTransaction();
         }
 
         //order click
@@ -120,8 +131,10 @@ namespace Jollibee_POS
         {
             cartGrid.Rows.Clear();
             cart.Clear();
+
             calculateCartOrders();
             resetUpdateQtyState();
+            resetTransaction();
         }
 
         private void cardGrid_editRowQty(object sender, DataGridViewCellEventArgs e)
@@ -163,6 +176,17 @@ namespace Jollibee_POS
             updateQtyBtn.Enabled = false;
             updateQtyInput.Value = 0;
         }
+
+        public void resetTransaction()
+        {
+            subTotal = 0.00m;
+            amountPaid = 0.00m;
+            change = 0.00m;
+
+            transactionTotal.Text = $"₱{subTotal.ToString("N2")}";
+            transactionChange.Text = $"₱{change.ToString("N2")}";
+            transactionAmountPaid.Text = $"₱{amountPaid.ToString("N2")}";
+        }
         private void updateQtyBtn_Click(object sender, EventArgs e)
         {
             if(cartGrid.CurrentRow != null)
@@ -188,10 +212,18 @@ namespace Jollibee_POS
 
         public void calculateTransaction()
         {
-            transactionTotal.Text = subTotal.ToString();
-            transactionAmountPaid.Text = amountPaid.ToString();
-            decimal change = subTotal - amountPaid;
-            transactionChange.Text = change.ToString();
+            transactionTotal.Text = $"₱{subTotal.ToString("N2")}";
+            
+            if(amountPaid > subTotal)
+            { 
+                change = amountPaid - subTotal;
+                transactionChange.Text = $"₱{change.ToString("N2")}";
+            }
+            else
+            {
+                change = 0.00m;
+                transactionChange.Text = $"₱{change.ToString("N2")}";
+            }
         }
     }
 }
