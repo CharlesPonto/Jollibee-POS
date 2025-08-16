@@ -929,11 +929,15 @@
             this.cartGrid.GridColor = System.Drawing.SystemColors.Control;
             this.cartGrid.Location = new System.Drawing.Point(11, 56);
             this.cartGrid.Name = "cartGrid";
+            this.cartGrid.ReadOnly = true;
             this.cartGrid.RowHeadersVisible = false;
             this.cartGrid.RowHeadersWidth = 51;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.cartGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.cartGrid.RowTemplate.Height = 24;
+            this.cartGrid.RowTemplate.Height = 30;
+            this.cartGrid.RowTemplate.ReadOnly = true;
+            this.cartGrid.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.cartGrid.Size = new System.Drawing.Size(395, 506);
             this.cartGrid.TabIndex = 8;
             this.cartGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cardGrid_editRowQty);
@@ -955,6 +959,7 @@
             this.OrderQty.HeaderText = "QTY";
             this.OrderQty.MinimumWidth = 6;
             this.OrderQty.Name = "OrderQty";
+            this.OrderQty.ReadOnly = true;
             this.OrderQty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.OrderQty.Width = 80;
             // 
@@ -982,8 +987,9 @@
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(190, 58);
             this.btnPay.TabIndex = 7;
-            this.btnPay.Text = "Pay";
+            this.btnPay.Text = "Confirm Order";
             this.btnPay.UseVisualStyleBackColor = false;
+            this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
             // btnClearAll
             // 
@@ -1020,8 +1026,10 @@
             this.cartTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cartTotal.Location = new System.Drawing.Point(203, 11);
             this.cartTotal.Name = "cartTotal";
+            this.cartTotal.ReadOnly = true;
             this.cartTotal.Size = new System.Drawing.Size(177, 34);
             this.cartTotal.TabIndex = 12;
+            this.cartTotal.TabStop = false;
             this.cartTotal.Text = "₱0.00";
             this.cartTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1088,27 +1096,33 @@
             // 
             // transactionChange
             // 
+            this.transactionChange.BackColor = System.Drawing.SystemColors.Window;
             this.transactionChange.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transactionChange.Location = new System.Drawing.Point(209, 134);
             this.transactionChange.Name = "transactionChange";
+            this.transactionChange.ReadOnly = true;
             this.transactionChange.Size = new System.Drawing.Size(177, 41);
             this.transactionChange.TabIndex = 13;
             this.transactionChange.Text = "₱0.00";
             // 
             // transactionAmountPaid
             // 
+            this.transactionAmountPaid.BackColor = System.Drawing.SystemColors.Window;
             this.transactionAmountPaid.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transactionAmountPaid.Location = new System.Drawing.Point(209, 75);
             this.transactionAmountPaid.Name = "transactionAmountPaid";
+            this.transactionAmountPaid.ReadOnly = true;
             this.transactionAmountPaid.Size = new System.Drawing.Size(177, 41);
             this.transactionAmountPaid.TabIndex = 12;
             this.transactionAmountPaid.Text = "₱0.00";
             // 
             // transactionTotal
             // 
+            this.transactionTotal.BackColor = System.Drawing.SystemColors.Window;
             this.transactionTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transactionTotal.Location = new System.Drawing.Point(209, 19);
             this.transactionTotal.Name = "transactionTotal";
+            this.transactionTotal.ReadOnly = true;
             this.transactionTotal.Size = new System.Drawing.Size(177, 41);
             this.transactionTotal.TabIndex = 11;
             this.transactionTotal.Text = "₱0.00";

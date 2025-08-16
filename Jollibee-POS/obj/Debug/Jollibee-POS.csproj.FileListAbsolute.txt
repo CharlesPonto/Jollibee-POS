@@ -9,3 +9,4 @@ C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.csp
 C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.exe
 C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.pdb
 C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee-POS.exe.config
+C:\Users\charl\source\repos\Jollibee-POS\Jollibee-POS\obj\Debug\Jollibee_POS.ReceiptForm.resources

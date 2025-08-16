@@ -15,11 +15,11 @@ namespace Jollibee_POS
         private List<MenuItem> cart = new List<MenuItem>();
 
         //transaction variables
-        private decimal amountPaid;
-        private decimal change = 0.00m; 
+        private decimal amountPaid = 0.00m;
+        private decimal change = 0.00m;
         private decimal subTotal = 0.00m;
 
-        //menu variable
+        //menu variables
         private string productName;
         private decimal productPrice;
         public Form1()
@@ -52,7 +52,7 @@ namespace Jollibee_POS
         }
         private void numpadClearClick(object sender, EventArgs e)
         {
-            amountPaid = 0;  
+            amountPaid = 0;
             transactionAmountPaid.Text = "₱0.00";
 
             calculateTransaction();
@@ -189,7 +189,7 @@ namespace Jollibee_POS
         }
         private void updateQtyBtn_Click(object sender, EventArgs e)
         {
-            if(cartGrid.CurrentRow != null)
+            if (cartGrid.CurrentRow != null)
             {
                 UpdateRowQty(cartGrid.CurrentRow);
             }
@@ -197,11 +197,11 @@ namespace Jollibee_POS
 
         public void calculateCartOrders()
         {
-            subTotal = 0.00m; 
+            subTotal = 0.00m;
 
             foreach (var item in cart)
             {
-                subTotal += item.Total; 
+                subTotal += item.Total;
             }
 
             cartTotal.Text = $"₱{subTotal.ToString()}";
@@ -213,9 +213,9 @@ namespace Jollibee_POS
         public void calculateTransaction()
         {
             transactionTotal.Text = $"₱{subTotal.ToString("N2")}";
-            
-            if(amountPaid > subTotal)
-            { 
+
+            if (amountPaid > subTotal)
+            {
                 change = amountPaid - subTotal;
                 transactionChange.Text = $"₱{change.ToString("N2")}";
             }
@@ -224,6 +224,60 @@ namespace Jollibee_POS
                 change = 0.00m;
                 transactionChange.Text = $"₱{change.ToString("N2")}";
             }
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            if(subTotal > amountPaid)
+            {
+                MessageBox.Show("Insufficient amount paid");
+                return;
+            }
+
+            if (cart.Count == 0)
+            {
+                MessageBox.Show("Your cart is empty!");
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("             JOLLIBAI POS RECEIPT");
+            sb.AppendLine("=============================================");
+            sb.AppendLine("   Date: " + DateTime.Now.ToString("MM/dd/yyyy HH:mm") + "\n");
+            sb.AppendLine(string.Format("{0,-5}{1,-20}{2,10}{3,10}",
+                "Qty", "Item", "Price", "Total"));
+            sb.AppendLine("=============================================");
+
+            foreach (var item in cart) 
+            {
+                string itemName = item.Name;
+
+                if (itemName.Length > 20)
+                    itemName = itemName.Substring(0, 20);
+
+                sb.AppendLine(string.Format("{0,-5}{1,-20}{2,10:C}{3,10:C}",
+                    item.Quantity, itemName, item.Price, item.Quantity * item.Price));
+            }
+
+            sb.AppendLine("=============================================");
+            sb.AppendLine(string.Format("{0,-30}{1,15:C}", "Subtotal:", subTotal));
+            sb.AppendLine(string.Format("{0,-30}{1,15:C}", "Amount Paid:", amountPaid));
+            sb.AppendLine(string.Format("{0,-30}{1,15:C}", "Change:", change));
+            sb.AppendLine("=============================================");
+            sb.AppendLine("\n       THANK YOU FOR DINING WITH JOLLIBAI!");
+            sb.AppendLine("\n               OFFICIAL RECEIPT");
+
+            ReceiptForm receiptForm = new ReceiptForm(sb.ToString());
+            receiptForm.ShowDialog();
+
+            //clear all 
+            cartGrid.Rows.Clear();
+            cart.Clear();
+
+            calculateCartOrders();
+            resetUpdateQtyState();
+            resetTransaction();
         }
     }
 }
