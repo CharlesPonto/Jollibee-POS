@@ -45,6 +45,7 @@ namespace Jollibee_POS
                 if (decimal.TryParse(amountText, out decimal amount))
                 {
                     amountPaid = amount;
+                    transactionAmountPaid.Text = "₱" + amount.ToString("N0");
                 }
             }
 
@@ -58,7 +59,6 @@ namespace Jollibee_POS
             calculateTransaction();
         }
 
-        //order click
         private void order_Click(object sender, EventArgs e)
         {
             //use the parent if clicked (label or image)
@@ -81,7 +81,6 @@ namespace Jollibee_POS
                     }
                 }
             }
-            //MessageBox.Show($"Name: {productName}\nPrice: {productPrice}");
 
             var existingItem = cart.FirstOrDefault(item => item.Name == productName);
             if (existingItem != null)
@@ -105,7 +104,6 @@ namespace Jollibee_POS
             {
                 cartGrid.Rows.Add(item.Name, item.Quantity, "₱" + item.Price.ToString("N2"));
             }
-
             cartGrid.ClearSelection();
         }
 
@@ -147,26 +145,7 @@ namespace Jollibee_POS
                 updateQtyBtn.Enabled = true;
 
                 updateQtyInput.Value = Convert.ToInt32(clickedRow.Cells["OrderQty"].Value);
-                //updateRowQty(clickedRow);
-                //int quantity = Convert.ToInt32(clickedRow.Cells["OrderQty"].Value);
-                //MessageBox.Show($"{quantity.ToString()}");
             }
-        }
-
-        public void UpdateRowQty(DataGridViewRow clickedRow)
-        {
-            int rowIndex = clickedRow.Index;
-            int newQty = Convert.ToInt32(updateQtyInput.Value);
-
-            //get values from rows
-            // int quantity = Convert.ToInt32(clickedRow.Cells["OrderQty"].Value);
-            //clickedRow.Cells["OrderQty"].Value = updateQtyInput.Value;
-
-            cart[rowIndex].Quantity = newQty;
-            clickedRow.Cells["OrderQty"].Value = newQty;
-
-            calculateCartOrders();
-            resetUpdateQtyState();
         }
 
         public void resetUpdateQtyState()
@@ -193,6 +172,19 @@ namespace Jollibee_POS
             {
                 UpdateRowQty(cartGrid.CurrentRow);
             }
+        }
+
+        public void UpdateRowQty(DataGridViewRow clickedRow)
+        {
+            int rowIndex = clickedRow.Index;
+            int newQty = Convert.ToInt32(updateQtyInput.Value);
+
+            //update values
+            cart[rowIndex].Quantity = newQty;
+            clickedRow.Cells["OrderQty"].Value = newQty;
+
+            calculateCartOrders();
+            resetUpdateQtyState();
         }
 
         public void calculateCartOrders()
@@ -230,7 +222,11 @@ namespace Jollibee_POS
         {
             if(subTotal > amountPaid)
             {
-                MessageBox.Show("Insufficient amount paid");
+                decimal shortage = subTotal - amountPaid;
+                MessageBox.Show($"Insufficient amount paid.\nCustomer is short by ₱{shortage}",
+                                "Payment Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
                 return;
             }
 
@@ -242,32 +238,32 @@ namespace Jollibee_POS
 
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("             JOLLIBAI POS RECEIPT");
-            sb.AppendLine("=============================================");
-            sb.AppendLine("   Date: " + DateTime.Now.ToString("MM/dd/yyyy HH:mm") + "\n");
-            sb.AppendLine(string.Format("{0,-5}{1,-20}{2,10}{3,10}",
+            sb.AppendLine("              JOLLIBAI POS RECEIPT"); 
+            sb.AppendLine(" =============================================");
+            sb.AppendLine("             Date: " + DateTime.Now.ToString("MM/dd/yyyy HH:mm") + "\n");
+            sb.AppendLine(string.Format(" {0,-5}{1,-20}{2,10}{3,10}",
                 "Qty", "Item", "Price", "Total"));
-            sb.AppendLine("=============================================");
+            sb.AppendLine(" =============================================");
 
-            foreach (var item in cart) 
+            foreach (var item in cart)
             {
                 string itemName = item.Name;
 
-                if (itemName.Length > 20)
-                    itemName = itemName.Substring(0, 20);
-
-                sb.AppendLine(string.Format("{0,-5}{1,-20}{2,10:C}{3,10:C}",
-                    item.Quantity, itemName, item.Price, item.Quantity * item.Price));
+                sb.AppendLine(string.Format(" {0,-5}{1,-20}{2,10}{3,10}",
+                    item.Quantity,
+                    itemName,
+                    "₱" + item.Price.ToString("N2"),
+                    "₱" + (item.Quantity * item.Price).ToString("N2")));
             }
 
-            sb.AppendLine("=============================================");
-            sb.AppendLine(string.Format("{0,-30}{1,15:C}", "Subtotal:", subTotal));
-            sb.AppendLine(string.Format("{0,-30}{1,15:C}", "Amount Paid:", amountPaid));
-            sb.AppendLine(string.Format("{0,-30}{1,15:C}", "Change:", change));
-            sb.AppendLine("=============================================");
-            sb.AppendLine("\n       THANK YOU FOR DINING WITH JOLLIBAI!");
-            sb.AppendLine("\n               OFFICIAL RECEIPT");
-
+            sb.AppendLine(" =============================================");
+            sb.AppendLine(string.Format(" {0,-30}{1,15}", "Subtotal:", "₱" + subTotal.ToString("N2")));
+            sb.AppendLine(string.Format(" {0,-30}{1,15}", "Amount Paid:", "₱" + amountPaid.ToString("N2")));
+            sb.AppendLine(string.Format(" {0,-30}{1,15}", "Change:", "₱" + change.ToString("N2")));
+            sb.AppendLine(" =============================================");
+            sb.AppendLine("\n        THANK YOU FOR DINING WITH JOLLIBAI!");
+            sb.AppendLine("\n                OFFICIAL RECEIPT");
+            
             ReceiptForm receiptForm = new ReceiptForm(sb.ToString());
             receiptForm.ShowDialog();
 

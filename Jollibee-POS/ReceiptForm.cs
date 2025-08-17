@@ -22,5 +22,19 @@ namespace Jollibee_POS
         {
             this.Close();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            saveFileDialog.Title = "Save Receipt";
+            saveFileDialog.FileName = "Receipt.txt";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.File.WriteAllText(saveFileDialog.FileName, rtbReceipt.Text);
+                MessageBox.Show("Receipt saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
