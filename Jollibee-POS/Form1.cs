@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Jollibee_POS
@@ -14,23 +11,39 @@ namespace Jollibee_POS
     {
         private List<MenuItem> cart = new List<MenuItem>();
 
-        //transaction variables
+        // Transaction 
         private decimal amountPaid = 0.00m;
         private decimal change = 0.00m;
         private decimal subTotal = 0.00m;
 
-        //menu variables
+        // Menu 
         private string productName;
         private decimal productPrice;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        //numpad
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Attach click events to menu items (labels, images)
+            foreach (Control control in menuTableLayout.Controls)
+            {
+                if (control is Panel menuPanel)
+                {
+                    menuPanel.Click += order_Click;
+                    foreach (Control child in menuPanel.Controls)
+                    {
+                        child.Click += order_Click;
+                    }
+                }
+            }
+        }
+
+        // Numpad Events
         private void numpadClick(object sender, EventArgs e)
         {
-
             if (transactionAmountPaid.Text.Contains("₱0.00"))
             {
                 transactionAmountPaid.Text = "₱";
@@ -51,6 +64,7 @@ namespace Jollibee_POS
 
             calculateTransaction();
         }
+
         private void numpadClearClick(object sender, EventArgs e)
         {
             amountPaid = 0;
@@ -59,20 +73,19 @@ namespace Jollibee_POS
             calculateTransaction();
         }
 
+        // Order & Cart Handling
         private void order_Click(object sender, EventArgs e)
         {
-            //use the parent if clicked (label or image)
+            // use the parent if clicked (label or image)
             Panel clickedPanel = sender as Panel ?? (sender as Control).Parent as Panel;
 
-            //get name and price
+            // get name and price
             foreach (Control control in clickedPanel.Controls)
             {
                 if (control is Label label)
                 {
                     if ((string)label.Tag == "Name")
-                    {
                         productName = label.Text;
-                    }
 
                     if ((string)label.Tag == "Price")
                     {
@@ -82,6 +95,7 @@ namespace Jollibee_POS
                 }
             }
 
+            // Add to cart or increase qty
             var existingItem = cart.FirstOrDefault(item => item.Name == productName);
             if (existingItem != null)
             {
@@ -107,34 +121,7 @@ namespace Jollibee_POS
             cartGrid.ClearSelection();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //iterates to my table (menu)
-            foreach (Control control in menuTableLayout.Controls)
-            {
-                if (control is Panel menuPanel)
-                {
-                    menuPanel.Click += order_Click;
-
-                    //(labels + image) -> order_Click event
-                    foreach (Control child in menuPanel.Controls)
-                    {
-                        child.Click += order_Click;
-                    }
-                }
-            }
-        }
-
-        private void btnClearAll_Click(object sender, EventArgs e)
-        {
-            cartGrid.Rows.Clear();
-            cart.Clear();
-
-            calculateCartOrders();
-            resetUpdateQtyState();
-            resetTransaction();
-        }
-
+        // Cart Edit & Clear
         private void cardGrid_editRowQty(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -146,25 +133,6 @@ namespace Jollibee_POS
 
                 updateQtyInput.Value = Convert.ToInt32(clickedRow.Cells["OrderQty"].Value);
             }
-        }
-
-        public void resetUpdateQtyState()
-        {
-            cartGrid.ClearSelection();
-            updateQtyInput.Enabled = false;
-            updateQtyBtn.Enabled = false;
-            updateQtyInput.Value = 0;
-        }
-
-        public void resetTransaction()
-        {
-            subTotal = 0.00m;
-            amountPaid = 0.00m;
-            change = 0.00m;
-
-            transactionTotal.Text = $"₱{subTotal.ToString("N2")}";
-            transactionChange.Text = $"₱{change.ToString("N2")}";
-            transactionAmountPaid.Text = $"₱{amountPaid.ToString("N2")}";
         }
         private void updateQtyBtn_Click(object sender, EventArgs e)
         {
@@ -179,7 +147,6 @@ namespace Jollibee_POS
             int rowIndex = clickedRow.Index;
             int newQty = Convert.ToInt32(updateQtyInput.Value);
 
-            //update values
             cart[rowIndex].Quantity = newQty;
             clickedRow.Cells["OrderQty"].Value = newQty;
 
@@ -187,6 +154,37 @@ namespace Jollibee_POS
             resetUpdateQtyState();
         }
 
+        private void btnClearAll_Click(object sender, EventArgs e)
+        {
+            cartGrid.Rows.Clear();
+            cart.Clear();
+
+            calculateCartOrders();
+            resetUpdateQtyState();
+            resetTransaction();
+        }
+
+        // Reset Helpers
+        public void resetUpdateQtyState()
+        {
+            cartGrid.ClearSelection();
+            updateQtyInput.Enabled = false;
+            updateQtyBtn.Enabled = false;
+            updateQtyInput.Value = 0;
+        }
+
+        public void resetTransaction()
+        {
+            subTotal = 0.00m;
+            amountPaid = 0.00m;
+            change = 0.00m;
+
+            transactionTotal.Text = $"₱{subTotal:N2}";
+            transactionChange.Text = $"₱{change:N2}";
+            transactionAmountPaid.Text = $"₱{amountPaid:N2}";
+        }
+
+        // Calculations
         public void calculateCartOrders()
         {
             subTotal = 0.00m;
@@ -196,7 +194,7 @@ namespace Jollibee_POS
                 subTotal += item.Total;
             }
 
-            cartTotal.Text = $"₱{subTotal.ToString()}";
+            cartTotal.Text = $"₱{subTotal}";
             cartGrid.ClearSelection();
 
             calculateTransaction();
@@ -204,23 +202,24 @@ namespace Jollibee_POS
 
         public void calculateTransaction()
         {
-            transactionTotal.Text = $"₱{subTotal.ToString("N2")}";
+            transactionTotal.Text = $"₱{subTotal:N2}";
 
             if (amountPaid > subTotal)
             {
                 change = amountPaid - subTotal;
-                transactionChange.Text = $"₱{change.ToString("N2")}";
+                transactionChange.Text = $"₱{change:N2}";
             }
             else
             {
                 change = 0.00m;
-                transactionChange.Text = $"₱{change.ToString("N2")}";
+                transactionChange.Text = $"₱{change:N2}";
             }
         }
 
+        // Payment & Receipt
         private void btnPay_Click(object sender, EventArgs e)
         {
-            if(subTotal > amountPaid)
+            if (subTotal > amountPaid)
             {
                 decimal shortage = subTotal - amountPaid;
                 MessageBox.Show($"Insufficient amount paid.\nCustomer is short by ₱{shortage}",
@@ -237,8 +236,7 @@ namespace Jollibee_POS
             }
 
             StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine("              JOLLIBAI POS RECEIPT"); 
+            sb.AppendLine("              JOLLIBAI POS RECEIPT");
             sb.AppendLine(" =============================================");
             sb.AppendLine("             Date: " + DateTime.Now.ToString("MM/dd/yyyy HH:mm") + "\n");
             sb.AppendLine(string.Format(" {0,-5}{1,-20}{2,10}{3,10}",
@@ -247,11 +245,9 @@ namespace Jollibee_POS
 
             foreach (var item in cart)
             {
-                string itemName = item.Name;
-
                 sb.AppendLine(string.Format(" {0,-5}{1,-20}{2,10}{3,10}",
                     item.Quantity,
-                    itemName,
+                    item.Name,
                     "₱" + item.Price.ToString("N2"),
                     "₱" + (item.Quantity * item.Price).ToString("N2")));
             }
@@ -263,11 +259,11 @@ namespace Jollibee_POS
             sb.AppendLine(" =============================================");
             sb.AppendLine("\n        THANK YOU FOR DINING WITH JOLLIBAI!");
             sb.AppendLine("\n                OFFICIAL RECEIPT");
-            
+
             ReceiptForm receiptForm = new ReceiptForm(sb.ToString());
             receiptForm.ShowDialog();
 
-            //clear all 
+            // Reset after payment
             cartGrid.Rows.Clear();
             cart.Clear();
 
